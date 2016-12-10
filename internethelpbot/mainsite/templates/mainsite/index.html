@@ -12,10 +12,14 @@
 		var context = {};
 		function getresp() {
 			var msg = $('#chatbox').val();
-			$.getJSON("/api/?message=\"" + msg + "\"&context=\"" + JSON.stringify(context) + "\"", function(json) {
-				console.log(json);	
+			$("body").append("<p> You:" + msg + "</p>");
+			console.log(msg);
+			$.getJSON("/api/?message=" + msg + "&context=" + JSON.stringify(context), function(json) {
+				console.log(json.output.text[0]);
+				$("body").append("<p> Watson:" + json.output.text[0] + "</p>");
+				context = json.context;	
 			});
 		}
-		$('#reply').click(getresp());
+		$('#reply').click(getresp);
 	</script>
 </html>
