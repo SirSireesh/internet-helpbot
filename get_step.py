@@ -40,8 +40,8 @@ def search(key):
                         img = img[:it1]
                         img = img.replace(' ', '-') 
                         print("The imgae is : ", img)
+                        print("The step is : ", lines[it][:(len(lines[it])) - (len(img) + 18)])
                     it += 1
-
 
 #        call(["open",'/Volumes/Data/Temp/GMail/' +  str(img)])
 
