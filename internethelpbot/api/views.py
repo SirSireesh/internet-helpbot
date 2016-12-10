@@ -5,6 +5,7 @@ from rest_framework import status
 import json
 from watson_developer_cloud import ConversationV1
 import os
+from . import get_step
 
 # Create your views here.
 
@@ -25,6 +26,6 @@ class message(APIView):
                 message_input={'text': msg},
                 context=contextjson
         )
-
+        print(response['entities'][0]['value'])
         result = Response(response, status=status.HTTP_200_OK)
         return result
