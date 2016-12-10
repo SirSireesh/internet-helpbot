@@ -1,5 +1,3 @@
-#!/usr/bin/env python3.4
-
 import os
 
 def search(key):
@@ -44,10 +42,8 @@ def search(key):
                         steps.append(lines[it][:(len(lines[it])) - (len(img) + 18)])
                         print("The step is : ", lines[it][:(len(lines[it])) - (len(img) + 18)])
                     it += 1
-
-#        call(["open",'/Volumes/Data/Temp/GMail/' +  str(img)])
-
         it += 1
+
     print("Images :\n", images)
     print("Steps :\n", steps)
 
