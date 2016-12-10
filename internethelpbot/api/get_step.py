@@ -1,7 +1,4 @@
-#!/usr/bin/env python3.4
-
 import os
-from subprocess import call
 
 def search(key):
     it = 0
@@ -9,6 +6,8 @@ def search(key):
     lines = f.readlines()
     it = 0
     img = []
+    images = []
+    steps  = []
     for i in lines:
         if '===' in i:
             if key in i:
@@ -39,12 +38,14 @@ def search(key):
                                 break
                         img = img[:it1]
                         img = img.replace(' ', '-') 
-                        print("The imgae is : ", img)
+                        images.append(img)
+                        steps.append(lines[it][:(len(lines[it])) - (len(img) + 18)])
                     it += 1
-
-
-#        call(["open",'/Volumes/Data/Temp/GMail/' +  str(img)])
-
         it += 1
-
-search("Sending")
+        json_steps = {'The Steps are:': ' '}
+        c = 0
+    for i in steps:
+        json_steps[i] = images[c]
+        c += 1
+    return json_steps
+    

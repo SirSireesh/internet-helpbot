@@ -26,6 +26,7 @@ class message(APIView):
                 message_input={'text': msg},
                 context=contextjson
         )
-        print(response['entities'][0]['value'])
-        result = Response(response, status=status.HTTP_200_OK)
-        return result
+        result = get_step.search(response['entities'][0]['value'])
+        result['context'] = response['context']
+        print(json.dumps(result))
+        return Response(json.dumps(result), status=status.HTTP_200_OK)

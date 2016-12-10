@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load staticfiles %} 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,17 +23,6 @@
   
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
   <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
-</head><!--/head-->
-
-<body>
-
-  <!--.preloader-->
-  <div class="preloader"> <i class="fa fa-circle-o-notch fa-spin"></i></div>
-  <!--/.preloader-->
-    <!--***************************HOME SLIDER*****************************/-->
-  <header id="home">
-    <div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
-      <div class="carousel-inner">
 	      <div class="item active" style="background-image: url({% static 'images/slider/1.jpg' %})">
           <div class="caption">
             <h1 class="animated fadeInLeftBig">Internet <span>HelpBot</span></h1>
@@ -96,7 +85,6 @@
       <div class="container">
         <div class="row" id="chatdiv">
           <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <h2>How can we help you?</h2>
             
           </div>
           
@@ -409,9 +397,14 @@
 			$("#chatdiv").append("<p> You:" + msg + "</p>");
 			console.log(msg);
 			$.getJSON("/api/?message=" + msg + "&context=" + JSON.stringify(context), function(json) {
-				console.log(json.output.text[0]);
-				$("#chatdiv").append("<p> Watson:" + json.output.text[0] + "</p>");
-				context = json.context;	
+				console.log(json);
+				var data = JSON.parse(json);
+				for (var i in data) {
+				$("#chatdiv").append("<p> Watson:" + i.substring(4) + "</p>");
+				$('#chatdiv').append("<img src=\"/static/pics/" + data[i] + "\"/>");
+				}
+				context = json["context"];
+				
 			});
 		}
 		$('#reply').click(getresp);
