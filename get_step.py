@@ -1,7 +1,6 @@
 #!/usr/bin/env python3.4
 
 import os
-from subprocess import call
 
 def search(key):
     it = 0
