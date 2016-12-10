@@ -9,6 +9,8 @@ def search(key):
     lines = f.readlines()
     it = 0
     img = []
+    images = []
+    steps  = []
     for i in lines:
         if '===' in i:
             if key in i:
@@ -39,12 +41,15 @@ def search(key):
                                 break
                         img = img[:it1]
                         img = img.replace(' ', '-') 
-                        print("The imgae is : ", img)
+                        images.append(img)
+                        steps.append(lines[it][:(len(lines[it])) - (len(img) + 18)])
                         print("The step is : ", lines[it][:(len(lines[it])) - (len(img) + 18)])
                     it += 1
 
 #        call(["open",'/Volumes/Data/Temp/GMail/' +  str(img)])
 
         it += 1
+    print("Images :\n", images)
+    print("Steps :\n", steps)
 
 search("Sending")
